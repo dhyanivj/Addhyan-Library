@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addhyan Library | Your Space to Succeed</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f766e', // Teal-700
+                        secondary: '#111827', // Gray-900
+                        accent: '#f59e0b', // Amber-500
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for things Tailwind handles awkwardly */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('./top-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Smooth reveal animation classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-700 bg-gray-50 antialiased selection:bg-primary selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-book-open-reader text-primary text-3xl"></i>
+                    <div>
+                        <span class="font-serif text-2xl font-bold text-gray-900">Addhyan</span>
+                        <span class="block text-xs text-primary font-medium tracking-widest uppercase">Library</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-primary font-medium transition-colors">About</a>
+                    <a href="#amenities"
+                        class="text-gray-600 hover:text-primary font-medium transition-colors">Amenities</a>
+                    <a href="#pricing"
+                        class="text-gray-600 hover:text-primary font-medium transition-colors">Pricing</a>
+                    <a href="#gallery"
+                        class="text-gray-600 hover:text-primary font-medium transition-colors">Gallery</a>
+                    <a href="#contact"
+                        class="px-5 py-2.5 bg-primary text-white rounded-full font-medium hover:bg-teal-800 transition-all transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl shadow-primary/30">
+                        Book a Seat
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#about"
+                    class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">About</a>
+                <a href="#amenities"
+                    class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Amenities</a>
+                <a href="#pricing"
+                    class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Pricing</a>
+                <a href="#contact"
+                    class="block mt-4 px-5 py-3 text-center bg-primary text-white rounded-lg font-medium shadow-md">Book
+                    Your Spot</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center hero-bg text-white">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-80"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-sm font-medium tracking-wide mb-6 animate-fade-in-up">
+                📍 Garhi Harsaru, Gurugram
+            </span>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6 leading-tight drop-shadow-lg">
+                Focus on Your <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-200">Ambitions</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200 font-light mb-10 leading-relaxed">
+                A premium, silent, and fully-equipped study space designed for serious aspirants.
+                Prepare for UPSC, CA, JEE, NEET, or work remotely in peace.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact"
+                    class="px-8 py-4 bg-primary hover:bg-teal-700 text-white rounded-full font-semibold text-lg transition-all shadow-[0_0_20px_rgba(15,118,110,0.5)] transform hover:scale-105">
+                    Reserve Your Seat
+                </a>
+                <a href="#amenities"
+                    class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white rounded-full font-semibold text-lg transition-all">
+                    Explore Features
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-white/70 hover:text-white transition-colors">
+                <i class="fa-solid fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About / Stats Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2">Why Choose Us</h2>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6">More than just a library.
+                        It's a growth ecosystem.</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        At Addhyan Library, we understand that environment is everything. We've curated a space that
+                        minimizes distractions and maximizes productivity. Located conveniently in Gurugram, we provide
+                        the silence you crave and the comfort you need for long study hours.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-700">Open 7 Days a Week</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-700">Dedicated Reserved Seating</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-700">Safe & Secure Environment with CCTV</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="grid grid-cols-2 gap-4 reveal delay-100">
+                    <img src="./img1.jpg" alt="Study Desk"
+                        class="rounded-2xl shadow-lg w-full h-64 object-cover transform translate-y-8">
+                    <img src="./img2.jpg" alt="Bookshelf" class="rounded-2xl shadow-lg w-full h-64 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section id="amenities" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900">World-Class Amenities</h2>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Everything you need to study effectively, all under one
+                    roof.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal">
+                    <div
+                        class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wifi text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">High-Speed Wi-Fi</h3>
+                    <p class="text-sm text-gray-500">Fiber-optic internet to ensure your online lectures never buffer.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal delay-75">
+                    <div
+                        class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-snowflake text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Fully AC</h3>
+                    <p class="text-sm text-gray-500">Climate-controlled environment for maximum comfort in all seasons.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal delay-100">
+                    <div
+                        class="w-14 h-14 bg-amber-50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-chair text-2xl text-amber-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Ergonomic Seating</h3>
+                    <p class="text-sm text-gray-500">Professional chairs designed to support your back during long
+                        sessions.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal delay-150">
+                    <div
+                        class="w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-bolt text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Power Backup</h3>
+                    <p class="text-sm text-gray-500">24/7 electricity backup so your studies are never interrupted.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal">
+                    <div
+                        class="w-14 h-14 bg-rose-50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-mug-hot text-2xl text-rose-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Cafeteria / Coffee</h3>
+                    <p class="text-sm text-gray-500">A zone to relax, grab a coffee, and recharge your mind.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal delay-75">
+                    <div
+                        class="w-14 h-14 bg-indigo-50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-book text-2xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Daily Newspaper</h3>
+                    <p class="text-sm text-gray-500">Access to leading English & Hindi newspapers and monthly magazines.
+                    </p>
+                </div>
+
+                <!-- Feature 7 -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal delay-100">
+                    <div
+                        class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-box text-2xl text-emerald-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Private Lockers</h3>
+                    <p class="text-sm text-gray-500">Secure lockers available to store your heavy books and notes.</p>
+                </div>
+
+                <!-- Feature 8 -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal delay-150">
+                    <div
+                        class="w-14 h-14 bg-cyan-50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-droplet text-2xl text-cyan-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-gray-900 mb-2">RO Water</h3>
+                    <p class="text-sm text-gray-500">Clean and chilled RO drinking water available 24/7.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white relative overflow-hidden">
+        <!-- Background decorative blob -->
+        <div
+            class="absolute top-0 right-0 -mr-64 -mt-64 w-96 h-96 rounded-full bg-teal-50 blur-3xl opacity-50 pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900">Affordable Study Plans</h2>
+                <p class="mt-4 text-gray-600">Choose the slot that fits your schedule.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Plan 1 -->
+                <div
+                    class="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 hover:-translate-y-2 transition-transform duration-300 reveal">
+                    <div class="text-center">
+                        <h3 class="text-lg font-semibold text-gray-900">Part Time</h3>
+                        <p class="text-sm text-gray-500 mt-1">4-6 Hours / Day</p>
+                        <div class="my-6">
+                            <span class="text-4xl font-bold text-gray-900">₹800</span>
+                            <span class="text-gray-500">/mo</span>
+                        </div>
+                        <a href="#contact"
+                            class="block w-full py-3 px-4 bg-gray-50 hover:bg-gray-100 text-primary font-semibold rounded-xl transition-colors border border-gray-200">Enquire
+                            Now</a>
+                    </div>
+                    <ul class="mt-8 space-y-3 text-sm text-gray-600">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i> Reserved
+                            Seat</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i> High-Speed
+                            Wi-Fi</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i> AC
+                            Environment</li>
+                        <li class="flex items-center"><i class="fa-solid fa-xmark text-gray-300 mr-2"></i> Locker Access
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Plan 2 (Popular) -->
+                <div
+                    class="bg-gray-900 rounded-2xl shadow-xl p-8 transform md:-translate-y-4 hover:-translate-y-6 transition-transform duration-300 relative border border-gray-800 reveal delay-100">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <span
+                            class="bg-amber-500 text-white text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-full shadow-lg">Most
+                            Popular</span>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-lg font-semibold text-white">Full Day</h3>
+                        <p class="text-sm text-gray-400 mt-1">12+ Hours / Day</p>
+                        <div class="my-6">
+                            <span class="text-4xl font-bold text-white">₹1200</span>
+                            <span class="text-gray-400">/mo</span>
+                        </div>
+                        <a href="#contact"
+                            class="block w-full py-3 px-4 bg-primary hover:bg-teal-600 text-white font-semibold rounded-xl transition-colors shadow-lg shadow-teal-900/50">Book
+                            Now</a>
+                    </div>
+                    <ul class="mt-8 space-y-3 text-sm text-gray-300">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-primary mr-2"></i> Reserved Seat
+                        </li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-primary mr-2"></i> Unlimited
+                            Wi-Fi</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-primary mr-2"></i> Personal
+                            Locker (Free)</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-primary mr-2"></i> Magazine
+                            Access</li>
+                    </ul>
+                </div>
+
+                <!-- Plan 3 -->
+                <div
+                    class="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 hover:-translate-y-2 transition-transform duration-300 reveal delay-200">
+                    <div class="text-center">
+                        <h3 class="text-lg font-semibold text-gray-900">Custom Slot</h3>
+                        <p class="text-sm text-gray-500 mt-1">Flexible Hours</p>
+                        <div class="my-6">
+                            <span class="text-4xl font-bold text-gray-900">₹1000</span>
+                            <span class="text-gray-500">/mo</span>
+                        </div>
+                        <a href="#contact"
+                            class="block w-full py-3 px-4 bg-gray-50 hover:bg-gray-100 text-primary font-semibold rounded-xl transition-colors border border-gray-200">Enquire
+                            Now</a>
+                    </div>
+                    <ul class="mt-8 space-y-3 text-sm text-gray-600">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i> Flexible
+                            Timings</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i> Wi-Fi Access
+                        </li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i> Peaceful
+                            Zone</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i> Locker
+                            (Add-on)</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="text-center text-xs text-gray-400 mt-8">* Prices are subject to change. Contact us for latest
+                offers.</p>
+        </div>
+    </section>
+
+    <!-- Gallery / Vibe Section -->
+    <section id="gallery" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900">Experience the Silence</h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+                <div class="col-span-2 row-span-2 overflow-hidden rounded-2xl shadow-md reveal">
+                    <img src="./bottom2.jpg" alt="Library Interior"
+                        class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="col-span-1 row-span-1 overflow-hidden rounded-2xl shadow-md reveal delay-75">
+                    <img src="./bottom1.jpg" alt="Books"
+                        class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="col-span-1 row-span-2 overflow-hidden rounded-2xl shadow-md reveal delay-100">
+                    <img src="./bottom3.jpg" alt="Student Reading"
+                        class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="col-span-1 row-span-1 overflow-hidden rounded-2xl shadow-md reveal delay-150">
+                    <img src="./bottom4.jpg" alt="Focus"
+                        class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Contact Form -->
+                <div class="reveal">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Secure Your Spot Today</h2>
+                    <p class="text-gray-600 mb-8">Slots fill up fast! Fill out the form below to schedule a visit or
+                        reserve your desk.</p>
+
+                    <form onsubmit="handleForm(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                <input type="text" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
+                                    placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
+                                    placeholder="+91 98765 43210">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Select Plan</label>
+                            <select
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white">
+                                <option>Full Day Plan</option>
+                                <option>Part Time Plan</option>
+                                <option>Custom / Hourly</option>
+                                <option>Just Visiting</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message (Optional)</label>
+                            <textarea rows="4"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
+                                placeholder="Any specific requirements?"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-primary hover:bg-teal-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-1">
+                            Send Enquiry
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Map & Info -->
+                <div class="h-full flex flex-col reveal delay-100">
+                    <!-- Map Container -->
+                    <div class="w-full h-80 bg-gray-200 rounded-2xl overflow-hidden shadow-md mb-8 relative group">
+                        <!-- Using iframe with the coordinates provided -->
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1935.4660024864193!2d76.92731397951036!3d28.44092290089134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d17865b7d5025%3A0xc6d0878de7b3db6e!2sAddhyan%20Library!5e0!3m2!1sen!2sin!4v1767195516114!5m2!1sen!2sin"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                            class="grayscale group-hover:grayscale-0 transition-all duration-500"></iframe>
+                        <a href="https://www.google.com/maps/place/Addhyan+Library/@28.441227,76.9278238,16z"
+                            target="_blank"
+                            class="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-lg shadow-md text-sm font-semibold text-primary hover:bg-gray-50 flex items-center gap-2">
+                            <i class="fa-solid fa-map-location-dot"></i> Open in Maps
+                        </a>
+                    </div>
+
+                    <!-- Contact Details -->
+                    <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 flex-grow">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-primary mr-4 flex-shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">Address</p>
+                                    <p class="text-gray-600 text-sm">Swami Chowk, Near Railway station, <br> Garhi
+                                        Harsaru,
+                                        Gurugram, Haryana 122505</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-primary mr-4 flex-shrink-0">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">Phone</p>
+                                    <p class="text-gray-600 text-sm">+91 9999088067</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-primary mr-4 flex-shrink-0">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">Email</p>
+                                    <p class="text-gray-600 text-sm">addhyanlibrary@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 border-b border-gray-800 pb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <i class="fa-solid fa-book-open-reader text-primary text-2xl"></i>
+                        <span class="font-serif text-xl font-bold">Addhyan Library</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Creating the perfect atmosphere for learners, dreamers, and achievers. Your success story begins
+                        at your desk.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="#about" class="hover:text-primary transition-colors">About Us</a></li>
+                        <li><a href="#pricing" class="hover:text-primary transition-colors">Plans</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Opening Hours</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex justify-between">
+                            <span>Monday - Saturday</span>
+                            <span class="text-white">6:00 AM - 10:00 PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sunday</span>
+                            <span class="text-white">8:00 AM - 8:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-gray-600 text-sm">
+                <p>&copy; 2026 Addhyan Library. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Form Handling
+        function handleForm(e) {
+            e.preventDefault();
+            // In a real app, send data to backend here
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            btn.innerText = 'Enquiry Sent!';
+            btn.classList.add('bg-green-600');
+
+            alert("Thanks for your interest in Addhyan Library! We will contact you shortly.");
+
+            e.target.reset();
+
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('bg-green-600');
+            }, 3000);
+        }
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
+</body>
+
+</html>
